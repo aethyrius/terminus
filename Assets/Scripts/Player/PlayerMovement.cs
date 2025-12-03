@@ -51,4 +51,18 @@ public class PlayerMovement : MonoBehaviour
         Vector2 origin = (Vector2)transform.position + Vector2.down * groundCheckOffset;
         return Physics2D.CircleCast(origin, groundRadius, Vector2.down, groundCheckDistance, groundMask);
     }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        Vector3 origin = transform.position + Vector3.down * groundCheckOffset;
+        Vector3 end = origin + Vector3.down * groundCheckDistance;
+
+        Gizmos.DrawWireSphere(origin, groundRadius);
+        Gizmos.DrawWireSphere(end, groundRadius);
+
+        Gizmos.DrawLine(origin + Vector3.left * groundRadius, end + Vector3.left * groundRadius);
+        Gizmos.DrawLine(origin + Vector3.right * groundRadius, end + Vector3.right * groundRadius);
+    }
 }

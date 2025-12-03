@@ -926,9 +926,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jumpForce: 6
-  groundCheckDistance: 0.1
-  groundCheckOffset: 0.5
-  groundRadius: 0.55
+  groundCheckDistance: 0.2
+  groundCheckOffset: 0
+  groundRadius: 0.49
 --- !u!114 &978295731
 MonoBehaviour:
   m_ObjectHideFlags: 0
