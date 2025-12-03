@@ -17,7 +17,14 @@ public class CommandHandler : MonoBehaviour
     void Start()
     {
         commands["invisible"] = MakeObjectInvisible;
+
+        commands["die"] = Die;
+        UnlockCommand("die");
     }
+
+    /*
+     * Executes the typed command upon closing the terminal
+     */
 
     public void EndEdit()
     {
@@ -53,5 +60,10 @@ public class CommandHandler : MonoBehaviour
     {
         GameObject obstacle = GameObject.Find("Obstacle");
         Destroy(obstacle);
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
     }
 }

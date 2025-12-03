@@ -1,21 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro.EditorUtilities;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float jumpForce = 6;
+    [SerializeField] private float groundCheckDistance = 0.1f;
+    [SerializeField] private float groundCheckOffset = 0.5f;
+    [SerializeField] private float groundRadius = 0.55f;
+
     private Rigidbody2D rb;
-    private float speed = 5f;
+    private int groundMask;
     private float direction;
-    private float jumpForce = 6;
-    private bool grounded;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        groundMask = 1 << LayerMask.NameToLayer("Ground");
     }
 
     private void Update()
@@ -25,33 +32,23 @@ public class PlayerMovement : MonoBehaviour
         if (isTerminalClosed)
         {
             direction = Input.GetAxis("Horizontal");
-            rb.velocity = new Vector2(direction * speed, rb.velocity.y);
+            rb.linearVelocity = new Vector2(direction * speed, rb.linearVelocity.y);
 
-            if (Input.GetKeyDown(KeyCode.Space) && grounded)
+            if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
             {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             }
         }
         else
         {
-            float smoothedX = Mathf.Lerp(rb.velocity.x, 0f, Time.deltaTime * 4);
-            rb.velocity = new Vector2(smoothedX, rb.velocity.y);
+            float smoothedX = Mathf.Lerp(rb.linearVelocity.x, 0f, Time.deltaTime * 4);
+            rb.linearVelocity = new Vector2(smoothedX, rb.linearVelocity.y);
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public bool IsGrounded()
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            grounded = true;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            grounded = false;
-        }
+        Vector2 origin = (Vector2)transform.position + Vector2.down * groundCheckOffset;
+        return Physics2D.CircleCast(origin, groundRadius, Vector2.down, groundCheckDistance, groundMask);
     }
 }
