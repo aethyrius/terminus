@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CommandHandler : MonoBehaviour
 {
@@ -16,10 +17,13 @@ public class CommandHandler : MonoBehaviour
 
     void Start()
     {
-        commands["invisible"] = MakeObjectInvisible;
+        commands["toggle"] = ToggleBlocks;
+        commands["tog"] = ToggleBlocks;
 
-        commands["die"] = Die;
-        UnlockCommand("die");
+        commands["reset"] = Reset;
+        commands["r"] = Reset;
+        UnlockCommand("reset");
+        UnlockCommand("r");
     }
 
     /*
@@ -56,14 +60,17 @@ public class CommandHandler : MonoBehaviour
         }
     }
 
-    private void MakeObjectInvisible()
+    private void ToggleBlocks()
     {
-        GameObject obstacle = GameObject.Find("Obstacle");
-        Destroy(obstacle);
+        foreach (GameObject toggle in LevelHandler.Instance.toggleables)
+        {
+            toggle.GetComponent<Toggleable>().Toggle();
+        }
     }
 
-    private void Die()
+    private void Reset()
     {
-        Destroy(gameObject);
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
     }
 }
