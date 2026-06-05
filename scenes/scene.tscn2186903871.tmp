@@ -1,0 +1,256 @@
+[gd_scene format=3 uid="uid://chdoc2wc2nyc1"]
+
+[ext_resource type="Script" uid="uid://dsm28o5qyvdqb" path="res://scripts/buttons/button.gd" id="1_1id6j"]
+[ext_resource type="PackedScene" uid="uid://cikh1ycfmj6m0" path="res://scenes/command_button.tscn" id="1_tpwpp"]
+[ext_resource type="Texture2D" uid="uid://b7jd4dl3qvr8c" path="res://assets/button-pressed.png" id="2_dv0eb"]
+[ext_resource type="Texture2D" uid="uid://dd314e1ckccj3" path="res://assets/button.png" id="3_tvkk6"]
+[ext_resource type="PackedScene" uid="uid://cxqp0og7iihdw" path="res://scenes/player.tscn" id="4_t7and"]
+[ext_resource type="Script" uid="uid://dqfkd5g51agsl" path="res://scripts/buttons/accumulative_button.gd" id="5_7182s"]
+[ext_resource type="Script" uid="uid://duodijpefr2go" path="res://scripts/commands/command.gd" id="7_dqloj"]
+[ext_resource type="Script" uid="uid://c6d3daj3rk2gd" path="res://scripts/kill_area.gd" id="7_ruw3y"]
+[ext_resource type="Script" uid="uid://dymptf5vrufuc" path="res://scripts/commands/gravity.gd" id="8_5yiy0"]
+[ext_resource type="Script" uid="uid://dkjnyadj2ienw" path="res://scripts/buttons/accumulative_target.gd" id="9_tpwpp"]
+[ext_resource type="Script" uid="uid://b20jmg34o0s36" path="res://scripts/toggleable.gd" id="14_e2ofw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+size = Vector2(1000, 120)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_3v2ag"]
+specular_color = Color(0.3716219, 0.37162232, 0.37162215, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1ej7"]
+size = Vector2(10.833336, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jej6c"]
+size = Vector2(250, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7and"]
+size = Vector2(300, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqloj"]
+size = Vector2(25, 225)
+
+[node name="Scene" type="Node2D" unique_id=981939462]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1624040266]
+zoom = Vector2(0.6, 0.6)
+
+[node name="Ground" type="RigidBody2D" parent="." unique_id=1263242959]
+visibility_layer = 3
+position = Vector2(2, 229)
+collision_layer = 3
+collision_mask = 7
+gravity_scale = 0.0
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=1633158914]
+position = Vector2(0, 300)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground/CollisionShape2D" unique_id=2070269852]
+scale = Vector2(1000, 120)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="Ground2" type="RigidBody2D" parent="." unique_id=763085682]
+visibility_layer = 3
+position = Vector2(-115, -19.000002)
+rotation = 1.5707964
+scale = Vector2(0.1, 0.1)
+collision_layer = 3
+collision_mask = 7
+gravity_scale = 0.0
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground2" unique_id=400748384]
+position = Vector2(0, 300)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground2/CollisionShape2D" unique_id=1902922421]
+scale = Vector2(1000, 120)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="Ground3" type="RigidBody2D" parent="." unique_id=1256517988]
+visibility_layer = 3
+position = Vector2(-877, -147.00002)
+rotation = 1.5707964
+scale = Vector2(0.15, 0.1)
+collision_layer = 3
+collision_mask = 7
+gravity_scale = 0.0
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground3" unique_id=1286681994]
+position = Vector2(0, 300)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground3/CollisionShape2D" unique_id=1253663728]
+scale = Vector2(1000, 120)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="Ground4" type="RigidBody2D" parent="." unique_id=2112057707]
+visibility_layer = 3
+position = Vector2(-775.99994, -300)
+scale = Vector2(0.04, 0.1)
+collision_layer = 3
+collision_mask = 7
+gravity_scale = 0.0
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground4" unique_id=223443179]
+position = Vector2(0, 300)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground4/CollisionShape2D" unique_id=1621146295]
+scale = Vector2(1000, 120)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="Ground5" type="RigidBody2D" parent="." unique_id=1314005384]
+visibility_layer = 3
+position = Vector2(113, -522)
+scale = Vector2(0.40000063, 0.1)
+collision_layer = 3
+collision_mask = 7
+gravity_scale = 0.0
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground5" unique_id=1577587449]
+position = Vector2(0, 300)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground5/CollisionShape2D" unique_id=102739316]
+scale = Vector2(1000, 120)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="ToggleButton" parent="." unique_id=1561553919 instance=ExtResource("1_tpwpp")]
+position = Vector2(-561, 181)
+
+[node name="AccumulativeButton1" type="Area2D" parent="." unique_id=320281696]
+visible = false
+position = Vector2(-384, 181)
+scale = Vector2(12, 12)
+script = ExtResource("1_1id6j")
+pressed_texture = ExtResource("2_dv0eb")
+
+[node name="Sprite2D" type="Sprite2D" parent="AccumulativeButton1" unique_id=670671921]
+texture_filter = 3
+texture = ExtResource("3_tvkk6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AccumulativeButton1" unique_id=1105258652]
+position = Vector2(0, 1)
+scale = Vector2(1, 0.2)
+shape = SubResource("RectangleShape2D_f1ej7")
+
+[node name="Behavior" type="Node2D" parent="AccumulativeButton1" unique_id=891025542 node_paths=PackedStringArray("target")]
+script = ExtResource("5_7182s")
+target = NodePath("../../Door")
+
+[node name="AccumulativeButton2" type="Area2D" parent="." unique_id=1386749423]
+visible = false
+position = Vector2(80, 181)
+scale = Vector2(12, 12)
+script = ExtResource("1_1id6j")
+pressed_texture = ExtResource("2_dv0eb")
+
+[node name="Sprite2D" type="Sprite2D" parent="AccumulativeButton2" unique_id=328329342]
+texture_filter = 3
+texture = ExtResource("3_tvkk6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AccumulativeButton2" unique_id=2075297421]
+position = Vector2(0, 1)
+scale = Vector2(1, 0.2)
+shape = SubResource("RectangleShape2D_f1ej7")
+
+[node name="Behavior" type="Node2D" parent="AccumulativeButton2" unique_id=620419346 node_paths=PackedStringArray("target")]
+script = ExtResource("5_7182s")
+target = NodePath("../../Door")
+
+[node name="Player" parent="." unique_id=358063610 instance=ExtResource("4_t7and")]
+position = Vector2(-761, 145)
+
+[node name="Terminal" parent="Player" index="2" unique_id=899346015 node_paths=PackedStringArray("player")]
+player = NodePath("..")
+
+[node name="ALIAS2" parent="Player/Terminal/Commands" parent_id_path=PackedInt32Array(358063610, 1020716996) index="3" unique_id=1357537038]
+enabled = false
+
+[node name="ALIAS3" parent="Player/Terminal/Commands" parent_id_path=PackedInt32Array(358063610, 1020716996) index="4" unique_id=1675121429]
+enabled = false
+
+[node name="GRAVITY" type="Node2D" parent="Player/Terminal/Commands" parent_id_path=PackedInt32Array(358063610, 1020716996) index="6" unique_id=2139817170]
+script = ExtResource("7_dqloj")
+names = Array[String](["GRAVITY", "GRAV"])
+code = ExtResource("8_5yiy0")
+enabled = true
+
+[node name="Health" parent="Player" index="3" unique_id=1011020923 node_paths=PackedStringArray("respawn_pos", "owning")]
+respawn_pos = NodePath("../../SpawnPoint")
+owning = NodePath("..")
+
+[node name="Toggle" type="RigidBody2D" parent="." unique_id=2087156457 groups=["toggles"]]
+modulate = Color(0.3019608, 0.56078434, 0, 1)
+position = Vector2(-300, 70)
+freeze = true
+script = ExtResource("14_e2ofw")
+tog_color = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Toggle" unique_id=1602895243]
+shape = SubResource("RectangleShape2D_jej6c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Toggle/CollisionShape2D" unique_id=145774954]
+position = Vector2(-0.99999994, 0)
+scale = Vector2(250, 50)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="Toggle4" type="RigidBody2D" parent="." unique_id=844790159 groups=["toggles"]]
+modulate = Color(0.7058824, 0, 0, 1)
+position = Vector2(-300, -120)
+freeze = true
+script = ExtResource("14_e2ofw")
+tog_color = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Toggle4" unique_id=393776320]
+shape = SubResource("RectangleShape2D_jej6c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Toggle4/CollisionShape2D" unique_id=598284349]
+position = Vector2(-0.99999994, 0)
+scale = Vector2(250, 50)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="KillArea" type="Area2D" parent="." unique_id=33313480]
+z_index = -5
+position = Vector2(487, 228)
+scale = Vector2(4.2799997, 1)
+script = ExtResource("7_ruw3y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea" unique_id=198125616]
+shape = SubResource("RectangleShape2D_t7and")
+
+[node name="Sprite2D" type="Sprite2D" parent="KillArea/CollisionShape2D" unique_id=671832855]
+modulate = Color(0.85490197, 0.07058824, 1, 1)
+scale = Vector2(300, 100)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="SpawnPoint" type="Node2D" parent="." unique_id=678583522]
+position = Vector2(-743, 128)
+
+[node name="Door" type="Node2D" parent="." unique_id=1454666625]
+position = Vector2(-144, -358)
+script = ExtResource("9_tpwpp")
+requirements = 2
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Door" unique_id=648887557]
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door/RigidBody2D" unique_id=1493535265]
+shape = SubResource("RectangleShape2D_dqloj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Door/RigidBody2D/CollisionShape2D" unique_id=1886945197]
+scale = Vector2(25, 225)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[editable path="Player"]

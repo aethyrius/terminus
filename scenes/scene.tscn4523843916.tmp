@@ -1,0 +1,479 @@
+[gd_scene format=3 uid="uid://chdoc2wc2nyc1"]
+
+[ext_resource type="Script" uid="uid://dsm28o5qyvdqb" path="res://scripts/button.gd" id="1_1id6j"]
+[ext_resource type="Texture2D" uid="uid://b7jd4dl3qvr8c" path="res://assets/button-pressed.png" id="2_dv0eb"]
+[ext_resource type="Texture2D" uid="uid://dd314e1ckccj3" path="res://assets/button.png" id="3_tvkk6"]
+[ext_resource type="PackedScene" uid="uid://cxqp0og7iihdw" path="res://scenes/player.tscn" id="4_t7and"]
+[ext_resource type="Script" uid="uid://duodijpefr2go" path="res://scripts/commands/command.gd" id="5_7ftgl"]
+[ext_resource type="Script" uid="uid://bm850cl06bym3" path="res://scenes/alias_menu.gd" id="5_7182s"]
+[ext_resource type="Script" uid="uid://rh0cxrl5cj2x" path="res://scripts/commands/die.gd" id="6_dqloj"]
+[ext_resource type="FontFile" uid="uid://dudur7chkmdrt" path="res://assets/Pixeled.ttf" id="6_ruw3y"]
+[ext_resource type="Script" uid="uid://c6d3daj3rk2gd" path="res://scripts/kill_area.gd" id="7_ruw3y"]
+[ext_resource type="Script" uid="uid://cjqrj4vekji8u" path="res://scripts/text.gd" id="7_tpwpp"]
+[ext_resource type="Script" uid="uid://b20jmg34o0s36" path="res://scripts/toggleable.gd" id="14_e2ofw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+size = Vector2(1000, 120)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_3v2ag"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1ej7"]
+size = Vector2(10.833336, 20)
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_oprun"]
+points = PackedVector2Array(-4.5, 3, -6, 4, 6, 4, 4.5, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sweqy"]
+bg_color = Color(0.22352941, 0.34117648, 0.10980392, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
+shadow_offset = Vector2(1.03, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2hs0m"]
+bg_color = Color(0.12941177, 0.20784314, 0.05490196, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ruw3y"]
+font = ExtResource("6_ruw3y")
+font_size = 18
+font_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jej6c"]
+size = Vector2(250, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7and"]
+size = Vector2(300, 100)
+
+[node name="Scene" type="Node2D" unique_id=981939462]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1624040266]
+zoom = Vector2(0.6, 0.6)
+
+[node name="Ground" type="RigidBody2D" parent="." unique_id=1263242959]
+visibility_layer = 3
+position = Vector2(2, 229)
+collision_layer = 3
+collision_mask = 7
+gravity_scale = 0.0
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=1633158914]
+position = Vector2(0, 300)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground/CollisionShape2D" unique_id=2070269852]
+scale = Vector2(1000, 120)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="Button" type="Node2D" parent="." unique_id=977830509]
+position = Vector2(-400, 181)
+scale = Vector2(12, 12)
+
+[node name="Area2D" type="Area2D" parent="Button" unique_id=745364359]
+script = ExtResource("1_1id6j")
+cmd_name = "TOGGLE"
+pressed_texture = ExtResource("2_dv0eb")
+
+[node name="Sprite2D" type="Sprite2D" parent="Button/Area2D" unique_id=345724212]
+texture_filter = 3
+texture = ExtResource("3_tvkk6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Button/Area2D" unique_id=1670094739]
+position = Vector2(0, 1)
+scale = Vector2(1, 0.2)
+shape = SubResource("RectangleShape2D_f1ej7")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Button" unique_id=1423556434]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Button/RigidBody2D" unique_id=976377417]
+shape = SubResource("ConvexPolygonShape2D_oprun")
+
+[node name="Player" parent="." unique_id=358063610 instance=ExtResource("4_t7and")]
+position = Vector2(-261, 0)
+
+[node name="Terminal" parent="Player" index="2" unique_id=2038720753 node_paths=PackedStringArray("player", "alias_menu")]
+player = NodePath("..")
+alias_menu = NodePath("AliasMenu")
+
+[node name="DIE" type="Node2D" parent="Player/Terminal/Commands" parent_id_path=PackedInt32Array(358063610, 1947687175) index="2" unique_id=941768300]
+script = ExtResource("5_7ftgl")
+names = Array[String](["DIE", "RESET", "R"])
+code = ExtResource("6_dqloj")
+enabled = true
+
+[node name="AliasMenu" type="Control" parent="Player/Terminal" index="2" unique_id=436132304 node_paths=PackedStringArray("names", "commands")]
+visible = false
+visibility_layer = 2
+z_index = 2
+custom_minimum_size = Vector2(800, 500)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -525.0
+offset_right = 400.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0.5, 0.5)
+mouse_filter = 1
+script = ExtResource("5_7182s")
+names = [NodePath("AliasNames/Name1"), NodePath("AliasNames/Name2"), NodePath("AliasNames/Name3")]
+commands = [NodePath("AliasCommands/Cmd1"), NodePath("AliasCommands/Cmd2"), NodePath("AliasCommands/Cmd3")]
+
+[node name="PanelContainer" type="PanelContainer" parent="Player/Terminal/AliasMenu" unique_id=1632641683]
+z_index = -1
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 425.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sweqy")
+
+[node name="AliasNames" type="VBoxContainer" parent="Player/Terminal/AliasMenu" unique_id=1871434730]
+z_index = 5
+z_as_relative = false
+layout_mode = 0
+offset_left = 50.0
+offset_top = 75.0
+offset_right = 200.0
+offset_bottom = 383.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Name1" type="LineEdit" parent="Player/Terminal/AliasMenu/AliasNames" unique_id=226115367]
+z_index = 1
+z_as_relative = false
+layout_mode = 2
+size_flags_horizontal = 5
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
+theme_override_colors/font_selected_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
+theme_override_colors/font_outline_color = Color(0.22352941, 0.34117648, 0.10980392, 1)
+theme_override_colors/font_placeholder_color = Color(0.22352941, 0.34117648, 0.10980392, 1)
+theme_override_colors/caret_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
+theme_override_colors/selection_color = Color(0.1712004, 0.2666959, 0.07891629, 1)
+theme_override_constants/caret_width = 5
+theme_override_fonts/font = ExtResource("6_ruw3y")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_sweqy")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_sweqy")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2hs0m")
+alignment = 1
+max_length = 30
+keep_editing_on_text_submit = true
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+select_all_on_focus = true
+virtual_keyboard_enabled = false
+caret_blink = true
+script = ExtResource("7_tpwpp")
+metadata/_edit_use_anchors_ = true
+
+[node name="Name2" type="LineEdit" parent="Player/Terminal/AliasMenu/AliasNames" unique_id=543040594]
+z_index = 1
+z_as_relative = false
+layout_mode = 2
+size_flags_horizontal = 5
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
+theme_override_colors/font_selected_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
+theme_override_colors/font_outline_color = Color(0.22352941, 0.34117648, 0.10980392, 1)
+theme_override_colors/font_placeholder_color = Color(0.22352941, 0.34117648, 0.10980392, 1)
+theme_override_colors/caret_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
+theme_override_colors/selection_color = Color(0.1712004, 0.2666959, 0.07891629, 1)
+theme_override_constants/caret_width = 5
+theme_override_fonts/font = ExtResource("6_ruw3y")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_sweqy")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_sweqy")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2hs0m")
+alignment = 1
+max_length = 30
+keep_editing_on_text_submit = true
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+select_all_on_focus = true
+virtual_keyboard_enabled = false
+caret_blink = true
+script = ExtResource("7_tpwpp")
+metadata/_edit_use_anchors_ = true
+
+[node name="Name3" type="LineEdit" parent="Player/Terminal/AliasMenu/AliasNames" unique_id=1549123982]
+z_index = 1
+z_as_relative = false
+layout_mode = 2
+size_flags_horizontal = 5
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
+theme_override_colors/font_selected_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
+theme_override_colors/font_outline_color = Color(0.22352941, 0.34117648, 0.10980392, 1)
+theme_override_colors/font_placeholder_color = Color(0.22352941, 0.34117648, 0.10980392, 1)
+theme_override_colors/caret_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
+theme_override_colors/selection_color = Color(0.1712004, 0.2666959, 0.07891629, 1)
+theme_override_constants/caret_width = 5
+theme_override_fonts/font = ExtResource("6_ruw3y")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_sweqy")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_sweqy")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2hs0m")
+alignment = 1
+max_length = 30
+keep_editing_on_text_submit = true
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+select_all_on_focus = true
+virtual_keyboard_enabled = false
+caret_blink = true
+script = ExtResource("7_tpwpp")
+metadata/_edit_use_anchors_ = true
+
+[node name="AliasCommands" type="VBoxContainer" parent="Player/Terminal/AliasMenu" unique_id=756717668]
+z_index = 5
+z_as_relative = false
+layout_mode = 0
+offset_left = 250.0
+offset_top = 75.0
+offset_right = 750.0
+offset_bottom = 383.0
+pivot_offset = Vector2(0.5, 0.5)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Cmd1" type="LineEdit" parent="Player/Terminal/AliasMenu/AliasCommands" unique_id=178743907]
+z_index = 1
+z_as_relative = false
+layout_mode = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
+theme_override_colors/font_uneditable_color = Color(0.22352941, 0.34117648, 0.10980392, 1)
+theme_override_colors/font_selected_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
+theme_override_colors/font_placeholder_color = Color(0.22352941, 0.34117648, 0.10980392, 1)
+theme_override_colors/caret_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
+theme_override_colors/selection_color = Color(0.1712004, 0.2666959, 0.07891629, 1)
+theme_override_constants/outline_size = 0
+theme_override_constants/caret_width = 5
+theme_override_fonts/font = ExtResource("6_ruw3y")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_sweqy")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_sweqy")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2hs0m")
+text = "(TOG R)(T1)(TOG G)"
+alignment = 1
+max_length = 30
+keep_editing_on_text_submit = true
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+select_all_on_focus = true
+virtual_keyboard_enabled = false
+caret_blink = true
+script = ExtResource("7_tpwpp")
+metadata/_edit_use_anchors_ = true
+
+[node name="Cmd2" type="LineEdit" parent="Player/Terminal/AliasMenu/AliasCommands" unique_id=345592532]
+z_index = 1
+z_as_relative = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
+theme_override_colors/font_uneditable_color = Color(0.22352941, 0.34117648, 0.10980392, 1)
+theme_override_colors/font_selected_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
+theme_override_colors/font_outline_color = Color(0.22352941, 0.34117648, 0.10980392, 1)
+theme_override_colors/font_placeholder_color = Color(0.22352941, 0.34117648, 0.10980392, 1)
+theme_override_colors/caret_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
+theme_override_colors/selection_color = Color(0.1712004, 0.2666959, 0.07891629, 1)
+theme_override_constants/caret_width = 5
+theme_override_fonts/font = ExtResource("6_ruw3y")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_sweqy")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_sweqy")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2hs0m")
+alignment = 1
+max_length = 30
+keep_editing_on_text_submit = true
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+select_all_on_focus = true
+virtual_keyboard_enabled = false
+caret_blink = true
+script = ExtResource("7_tpwpp")
+metadata/_edit_use_anchors_ = true
+
+[node name="Cmd3" type="LineEdit" parent="Player/Terminal/AliasMenu/AliasCommands" unique_id=385482911]
+z_index = 1
+z_as_relative = false
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
+theme_override_colors/font_uneditable_color = Color(0.22352941, 0.34117648, 0.10980392, 1)
+theme_override_colors/font_selected_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
+theme_override_colors/font_outline_color = Color(0.22352941, 0.34117648, 0.10980392, 1)
+theme_override_colors/font_placeholder_color = Color(0.22352941, 0.34117648, 0.10980392, 1)
+theme_override_colors/caret_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
+theme_override_colors/selection_color = Color(0.1712004, 0.2666959, 0.07891629, 1)
+theme_override_constants/caret_width = 5
+theme_override_fonts/font = ExtResource("6_ruw3y")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_sweqy")
+theme_override_styles/read_only = SubResource("StyleBoxFlat_sweqy")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2hs0m")
+alignment = 1
+max_length = 30
+keep_editing_on_text_submit = true
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+drag_and_drop_selection_enabled = false
+select_all_on_focus = true
+virtual_keyboard_enabled = false
+caret_blink = true
+script = ExtResource("7_tpwpp")
+metadata/_edit_use_anchors_ = true
+
+[node name="AliasLabel" type="Label" parent="Player/Terminal/AliasMenu" unique_id=154205673]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 25.0
+offset_right = 200.0
+offset_bottom = 76.0
+text = "ALIAS"
+label_settings = SubResource("LabelSettings_ruw3y")
+horizontal_alignment = 1
+
+[node name="CommandsLabel" type="Label" parent="Player/Terminal/AliasMenu" unique_id=1834747123]
+layout_mode = 0
+offset_left = 420.0
+offset_top = 25.0
+offset_right = 571.0
+offset_bottom = 130.0
+text = "COMMANDS
+"
+label_settings = SubResource("LabelSettings_ruw3y")
+horizontal_alignment = 1
+
+[node name="Health" parent="Player" index="3" unique_id=2058250578 node_paths=PackedStringArray("respawn_pos")]
+respawn_pos = NodePath("../../SpawnPoint")
+
+[node name="Toggle" type="RigidBody2D" parent="." unique_id=2087156457 groups=["toggles"]]
+modulate = Color(0.3019608, 0.56078434, 0, 1)
+position = Vector2(300, 100)
+freeze = true
+script = ExtResource("14_e2ofw")
+tog_color = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Toggle" unique_id=1602895243]
+shape = SubResource("RectangleShape2D_jej6c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Toggle/CollisionShape2D" unique_id=145774954]
+position = Vector2(-0.99999994, 0)
+scale = Vector2(250, 50)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="Toggle2" type="RigidBody2D" parent="." unique_id=1411252430 groups=["toggles"]]
+position = Vector2(550, -25)
+freeze = true
+script = ExtResource("14_e2ofw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Toggle2" unique_id=903027097]
+shape = SubResource("RectangleShape2D_jej6c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Toggle2/CollisionShape2D" unique_id=66625824]
+position = Vector2(-0.99999994, 0)
+scale = Vector2(250, 50)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="Toggle3" type="RigidBody2D" parent="." unique_id=728067062 groups=["toggles"]]
+position = Vector2(200, -149)
+freeze = true
+script = ExtResource("14_e2ofw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Toggle3" unique_id=1880071899]
+shape = SubResource("RectangleShape2D_jej6c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Toggle3/CollisionShape2D" unique_id=1451946694]
+position = Vector2(-0.99999994, 0)
+scale = Vector2(250, 50)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="Toggle4" type="RigidBody2D" parent="." unique_id=844790159 groups=["toggles"]]
+modulate = Color(0.7058824, 0, 0, 1)
+position = Vector2(-200, -150)
+freeze = true
+script = ExtResource("14_e2ofw")
+toggled_off = true
+tog_color = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Toggle4" unique_id=393776320]
+shape = SubResource("RectangleShape2D_jej6c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Toggle4/CollisionShape2D" unique_id=598284349]
+position = Vector2(-0.99999994, 0)
+scale = Vector2(250, 50)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="Toggle5" type="RigidBody2D" parent="." unique_id=87280351 groups=["toggles"]]
+position = Vector2(-600, -150)
+freeze = true
+script = ExtResource("14_e2ofw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Toggle5" unique_id=625745097]
+shape = SubResource("RectangleShape2D_jej6c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Toggle5/CollisionShape2D" unique_id=1532273581]
+position = Vector2(-0.99999994, 0)
+scale = Vector2(250, 50)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="KillArea" type="Area2D" parent="." unique_id=33313480]
+z_index = -5
+position = Vector2(671, 221)
+script = ExtResource("7_ruw3y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea" unique_id=198125616]
+shape = SubResource("RectangleShape2D_t7and")
+
+[node name="Sprite2D" type="Sprite2D" parent="KillArea/CollisionShape2D" unique_id=671832855]
+modulate = Color(0.85490197, 0.07058824, 1, 1)
+scale = Vector2(300, 100)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="SpawnPoint" type="Node2D" parent="." unique_id=678583522]
+position = Vector2(-743, 128)
+
+[connection signal="text_submitted" from="Player/Terminal/AliasMenu/AliasNames/Name1" to="Button/Area2D" method="_on_text_submitted"]
+[connection signal="text_submitted" from="Player/Terminal/AliasMenu/AliasNames/Name1" to="Player/Terminal/AliasMenu/AliasNames/Name1" method="_on_text_submitted"]
+[connection signal="text_submitted" from="Player/Terminal/AliasMenu/AliasNames/Name2" to="Player/Terminal/AliasMenu/AliasNames/Name2" method="_on_text_submitted"]
+[connection signal="text_submitted" from="Player/Terminal/AliasMenu/AliasNames/Name3" to="Player/Terminal/AliasMenu/AliasNames/Name3" method="_on_text_submitted"]
+[connection signal="text_submitted" from="Player/Terminal/AliasMenu/AliasCommands/Cmd1" to="Player/Terminal/AliasMenu/AliasCommands/Cmd1" method="_on_text_submitted"]
+[connection signal="text_submitted" from="Player/Terminal/AliasMenu/AliasCommands/Cmd2" to="Player/Terminal/AliasMenu/AliasCommands/Cmd2" method="_on_text_submitted"]
+[connection signal="text_submitted" from="Player/Terminal/AliasMenu/AliasCommands/Cmd3" to="Player/Terminal/AliasMenu/AliasCommands/Cmd3" method="_on_text_submitted"]
+
+[editable path="Player"]

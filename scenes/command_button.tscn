@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cikh1ycfmj6m0"]
+
+[ext_resource type="Script" uid="uid://dsm28o5qyvdqb" path="res://scripts/buttons/button.gd" id="1_pao0k"]
+[ext_resource type="Texture2D" uid="uid://b7jd4dl3qvr8c" path="res://assets/button-pressed.png" id="2_kvbrx"]
+[ext_resource type="Texture2D" uid="uid://dd314e1ckccj3" path="res://assets/button.png" id="3_2isgt"]
+[ext_resource type="Script" uid="uid://drd0tx50ke7tk" path="res://scripts/buttons/behaviors/bh_enable_command.gd" id="4_yscxf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1ej7"]
+size = Vector2(10.833336, 20)
+
+[node name="Button" type="Area2D" unique_id=1561553919]
+scale = Vector2(12, 12)
+script = ExtResource("1_pao0k")
+pressed_texture = ExtResource("2_kvbrx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=475196908]
+texture_filter = 3
+texture = ExtResource("3_2isgt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=301529186]
+position = Vector2(0, 1)
+scale = Vector2(1, 0.2)
+shape = SubResource("RectangleShape2D_f1ej7")
+
+[node name="Behavior" type="Node2D" parent="." unique_id=104076686]
+script = ExtResource("4_yscxf")
+cmd_name = "GRAVITY"

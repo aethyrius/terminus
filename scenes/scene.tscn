@@ -1,0 +1,486 @@
+[gd_scene format=3 uid="uid://chdoc2wc2nyc1"]
+
+[ext_resource type="Script" uid="uid://dsm28o5qyvdqb" path="res://scripts/buttons/button.gd" id="1_1id6j"]
+[ext_resource type="Texture2D" uid="uid://dd314e1ckccj3" path="res://assets/button.png" id="3_tvkk6"]
+[ext_resource type="Script" uid="uid://8l4nulttyfow" path="res://scripts/buttons/behaviors/bh_set_toggleable.gd" id="4_dqloj"]
+[ext_resource type="PackedScene" uid="uid://cxqp0og7iihdw" path="res://scenes/player.tscn" id="4_t7and"]
+[ext_resource type="Script" uid="uid://drd0tx50ke7tk" path="res://scripts/buttons/behaviors/bh_enable_command.gd" id="5_dqloj"]
+[ext_resource type="Script" uid="uid://duodijpefr2go" path="res://scripts/commands/command.gd" id="7_dqloj"]
+[ext_resource type="Script" uid="uid://c6d3daj3rk2gd" path="res://scripts/kill_area.gd" id="7_ruw3y"]
+[ext_resource type="Script" uid="uid://dymptf5vrufuc" path="res://scripts/commands/gravity.gd" id="8_5yiy0"]
+[ext_resource type="Script" uid="uid://cujbwlwk2rtrp" path="res://scenes/unlock_alias.gd" id="11_dqloj"]
+[ext_resource type="Texture2D" uid="uid://buxg3o0wf4odo" path="res://icon.svg" id="13_0f71q"]
+[ext_resource type="Script" uid="uid://b20jmg34o0s36" path="res://scripts/toggleable.gd" id="14_e2ofw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+size = Vector2(240, 24)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_3v2ag"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dv0eb"]
+size = Vector2(60, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1ej7"]
+size = Vector2(12, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a38lo"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jej6c"]
+size = Vector2(24, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7and"]
+size = Vector2(32, 6)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1id6j"]
+texture = ExtResource("13_0f71q")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_dv0eb"]
+tile_size = Vector2i(12, 12)
+sources/0 = SubResource("TileSetAtlasSource_1id6j")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ftgl"]
+size = Vector2(12, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqloj"]
+size = Vector2(12, 4)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_5yiy0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5yiy0"]
+size = Vector2(6, 6)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_0f71q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0f71q"]
+size = Vector2(24, 4)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_1id6j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1id6j"]
+size = Vector2(6, 48)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_dv0eb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tvkk6"]
+size = Vector2(8, 8)
+
+[node name="Scene" type="Node2D" unique_id=981939462]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1624040266]
+zoom = Vector2(7, 7)
+
+[node name="Ground" type="RigidBody2D" parent="." unique_id=1263242959]
+visibility_layer = 3
+position = Vector2(0, 40)
+collision_layer = 3
+collision_mask = 7
+gravity_scale = 0.0
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=1633158914]
+shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground" unique_id=2070269852]
+scale = Vector2(240, 24)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="Ground3" type="RigidBody2D" parent="." unique_id=1193378343]
+visibility_layer = 3
+position = Vector2(43, -34)
+collision_layer = 3
+collision_mask = 7
+gravity_scale = 0.0
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground3" unique_id=670764270]
+shape = SubResource("RectangleShape2D_dv0eb")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground3" unique_id=1731057415]
+scale = Vector2(60, 6)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="Ground2" type="RigidBody2D" parent="." unique_id=1169509725]
+visibility_layer = 3
+position = Vector2(0, -59)
+collision_layer = 3
+collision_mask = 7
+gravity_scale = 0.0
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground2" unique_id=790220239]
+shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground2" unique_id=1363823852]
+scale = Vector2(240, 24)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="EnableRedButton" type="Area2D" parent="." unique_id=1561553919]
+position = Vector2(-70, -39)
+script = ExtResource("1_1id6j")
+
+[node name="Sprite2D" type="Sprite2D" parent="EnableRedButton" unique_id=475196908]
+texture_filter = 3
+texture = ExtResource("3_tvkk6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnableRedButton" unique_id=301529186]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_f1ej7")
+
+[node name="Behavior" type="Node2D" parent="EnableRedButton" unique_id=104076686]
+script = ExtResource("4_dqloj")
+color = 1
+
+[node name="EnableGravity" type="Area2D" parent="." unique_id=1282682097]
+position = Vector2(26, -25)
+script = ExtResource("1_1id6j")
+
+[node name="Sprite2D" type="Sprite2D" parent="EnableGravity" unique_id=1660909412]
+texture_filter = 3
+texture = ExtResource("3_tvkk6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnableGravity" unique_id=868190889]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_f1ej7")
+
+[node name="Behavior" type="Node2D" parent="EnableGravity" unique_id=432858872]
+script = ExtResource("5_dqloj")
+cmd_name = "GRAVITY"
+
+[node name="Player" parent="." unique_id=498137850 instance=ExtResource("4_t7and")]
+speed = 65
+jump_speed = -90
+gravity = 300
+
+[node name="AnimatedSprite2D" parent="Player" index="0" unique_id=992774388]
+z_index = 10
+scale = Vector2(1, 1)
+
+[node name="CollisionShape2D" parent="Player" index="1" unique_id=965946415]
+position = Vector2(0, 0)
+shape = SubResource("RectangleShape2D_a38lo")
+
+[node name="Terminal" parent="Player" index="2" unique_id=899346015 node_paths=PackedStringArray("player")]
+player = NodePath("..")
+
+[node name="Text" parent="Player/Terminal" index="0" unique_id=1742600158]
+z_index = 2
+offset_top = -60.0
+offset_bottom = 40.0
+scale = Vector2(0.1, 0.1)
+
+[node name="TOGGLE" parent="Player/Terminal/Commands" parent_id_path=PackedInt32Array(498137850, 1020716996) index="0" unique_id=750278431]
+enabled = true
+
+[node name="ALIAS1" parent="Player/Terminal/Commands" parent_id_path=PackedInt32Array(498137850, 1020716996) index="2" unique_id=525045869]
+enabled = false
+
+[node name="ALIAS2" parent="Player/Terminal/Commands" parent_id_path=PackedInt32Array(498137850, 1020716996) index="3" unique_id=1357537038]
+enabled = false
+
+[node name="ALIAS3" parent="Player/Terminal/Commands" parent_id_path=PackedInt32Array(498137850, 1020716996) index="4" unique_id=1675121429]
+enabled = false
+
+[node name="GRAVITY" type="Node2D" parent="Player/Terminal/Commands" parent_id_path=PackedInt32Array(498137850, 1020716996) index="6" unique_id=1683687617]
+script = ExtResource("7_dqloj")
+names = Array[String](["GRAVITY", "GRAV"])
+code = ExtResource("8_5yiy0")
+
+[node name="AliasMenu" parent="Player/Terminal" index="2" unique_id=1965703491 node_paths=PackedStringArray("command_lines")]
+offset_left = -40.0
+offset_top = -50.0
+offset_right = 760.0
+offset_bottom = 450.0
+scale = Vector2(0.1, 0.1)
+pivot_offset = Vector2(0, 0)
+command_lines = [NodePath("AliasCommands/Cmd1"), NodePath("AliasCommands/Cmd2"), NodePath("AliasCommands/Cmd3")]
+
+[node name="Health" parent="Player" index="3" unique_id=1011020923 node_paths=PackedStringArray("respawn_pos", "owning")]
+respawn_pos = NodePath("../../SpawnPoint")
+owning = NodePath("..")
+
+[node name="GreenToggle" type="RigidBody2D" parent="." unique_id=2087156457 groups=["toggles"]]
+modulate = Color(0.3019608, 0.56078434, 0, 1)
+position = Vector2(-52, 3)
+freeze = true
+script = ExtResource("14_e2ofw")
+toggled = true
+tog_color = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GreenToggle" unique_id=1602895243]
+shape = SubResource("RectangleShape2D_jej6c")
+
+[node name="Sprite2D" type="Sprite2D" parent="GreenToggle/CollisionShape2D" unique_id=145774954]
+scale = Vector2(24, 4)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="GreenToggle2" type="RigidBody2D" parent="." unique_id=1062919460 groups=["toggles"]]
+modulate = Color(0.3019608, 0.56078434, 0, 1)
+position = Vector2(-52, -21)
+freeze = true
+script = ExtResource("14_e2ofw")
+tog_color = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GreenToggle2" unique_id=419289838]
+shape = SubResource("RectangleShape2D_jej6c")
+
+[node name="Sprite2D" type="Sprite2D" parent="GreenToggle2/CollisionShape2D" unique_id=657891994]
+scale = Vector2(24, 4)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="RedToggle" type="RigidBody2D" parent="." unique_id=820499789 groups=["toggles"]]
+modulate = Color(0.72248274, 0, 0.12579757, 1)
+position = Vector2(55, 18)
+freeze = true
+script = ExtResource("14_e2ofw")
+toggleable = false
+tog_color = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RedToggle" unique_id=1159071440]
+shape = SubResource("RectangleShape2D_jej6c")
+
+[node name="Sprite2D" type="Sprite2D" parent="RedToggle/CollisionShape2D" unique_id=1122263610]
+scale = Vector2(24, 4)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="RedToggle2" type="RigidBody2D" parent="." unique_id=845487250 groups=["toggles"]]
+modulate = Color(0.72248274, 0, 0.12579757, 1)
+position = Vector2(31, 5)
+freeze = true
+script = ExtResource("14_e2ofw")
+toggled = true
+toggleable = false
+tog_color = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RedToggle2" unique_id=1217828221]
+shape = SubResource("RectangleShape2D_jej6c")
+
+[node name="Sprite2D" type="Sprite2D" parent="RedToggle2/CollisionShape2D" unique_id=458964877]
+scale = Vector2(24, 4)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="RedToggle3" type="RigidBody2D" parent="." unique_id=415117690 groups=["toggles"]]
+modulate = Color(0.72248274, 0, 0.12579757, 1)
+position = Vector2(55, -9)
+freeze = true
+script = ExtResource("14_e2ofw")
+toggleable = false
+tog_color = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RedToggle3" unique_id=2007438069]
+shape = SubResource("RectangleShape2D_jej6c")
+
+[node name="Sprite2D" type="Sprite2D" parent="RedToggle3/CollisionShape2D" unique_id=421788130]
+scale = Vector2(24, 4)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="KillArea" type="Area2D" parent="." unique_id=33313480]
+z_index = -5
+position = Vector2(-60, 25)
+script = ExtResource("7_ruw3y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea" unique_id=198125616]
+shape = SubResource("RectangleShape2D_t7and")
+
+[node name="Sprite2D" type="Sprite2D" parent="KillArea/CollisionShape2D" unique_id=671832855]
+modulate = Color(0.85490197, 0.07058824, 1, 1)
+scale = Vector2(32, 6)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="KillArea2" type="Area2D" parent="." unique_id=986601783]
+z_index = -5
+position = Vector2(55, 25)
+script = ExtResource("7_ruw3y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea2" unique_id=1944368615]
+shape = SubResource("RectangleShape2D_t7and")
+
+[node name="Sprite2D" type="Sprite2D" parent="KillArea2/CollisionShape2D" unique_id=312453530]
+modulate = Color(0.85490197, 0.07058824, 1, 1)
+scale = Vector2(32, 6)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="SpawnPoint" type="Node2D" parent="." unique_id=678583522]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=596699426]
+tile_set = SubResource("TileSet_dv0eb")
+
+[node name="Wall" type="RigidBody2D" parent="." unique_id=1031869022]
+position = Vector2(-82, -8)
+collision_layer = 3
+collision_mask = 7
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall" unique_id=1417321566]
+shape = SubResource("RectangleShape2D_7ftgl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall/CollisionShape2D" unique_id=561705843]
+scale = Vector2(12, 120)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="Platform" type="RigidBody2D" parent="." unique_id=576796238]
+position = Vector2(-70, 15)
+collision_layer = 3
+collision_mask = 7
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform" unique_id=749032099]
+shape = SubResource("RectangleShape2D_dqloj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform/CollisionShape2D" unique_id=1114947253]
+scale = Vector2(12, 4)
+texture = SubResource("CanvasTexture_5yiy0")
+
+[node name="Platform3" type="RigidBody2D" parent="." unique_id=1582191102]
+position = Vector2(-70, -9)
+collision_layer = 3
+collision_mask = 7
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform3" unique_id=1391325832]
+shape = SubResource("RectangleShape2D_dqloj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform3/CollisionShape2D" unique_id=1436361273]
+scale = Vector2(12, 4)
+texture = SubResource("CanvasTexture_5yiy0")
+
+[node name="Platform4" type="RigidBody2D" parent="." unique_id=1637045474]
+position = Vector2(-70, -33)
+collision_layer = 3
+collision_mask = 7
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform4" unique_id=1177417573]
+shape = SubResource("RectangleShape2D_dqloj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform4/CollisionShape2D" unique_id=871532285]
+scale = Vector2(12, 4)
+texture = SubResource("CanvasTexture_5yiy0")
+
+[node name="Platform6" type="RigidBody2D" parent="." unique_id=419351125]
+position = Vector2(-41, 25)
+collision_layer = 3
+collision_mask = 7
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform6" unique_id=1389888099]
+shape = SubResource("RectangleShape2D_5yiy0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform6/CollisionShape2D" unique_id=912201096]
+scale = Vector2(6, 6)
+texture = SubResource("CanvasTexture_0f71q")
+
+[node name="Platform5" type="RigidBody2D" parent="." unique_id=1475815314]
+position = Vector2(26, -19)
+collision_layer = 3
+collision_mask = 7
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform5" unique_id=514389566]
+shape = SubResource("RectangleShape2D_0f71q")
+
+[node name="Sprite2D" type="Sprite2D" parent="Platform5/CollisionShape2D" unique_id=1288177256]
+scale = Vector2(24, 4)
+texture = SubResource("CanvasTexture_1id6j")
+
+[node name="Wall2" type="RigidBody2D" parent="." unique_id=730216807]
+position = Vector2(77, 9)
+collision_layer = 3
+collision_mask = 7
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2" unique_id=297382692]
+position = Vector2(0, 14)
+shape = SubResource("RectangleShape2D_7ftgl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall2/CollisionShape2D" unique_id=1423401332]
+scale = Vector2(12, 120)
+texture = SubResource("CanvasTexture_3v2ag")
+
+[node name="Wall3" type="RigidBody2D" parent="." unique_id=921619242]
+position = Vector2(11, -27)
+collision_layer = 3
+collision_mask = 7
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall3" unique_id=1247167902]
+position = Vector2(0, 14)
+shape = SubResource("RectangleShape2D_1id6j")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall3/CollisionShape2D" unique_id=731314773]
+scale = Vector2(6, 48)
+texture = SubResource("CanvasTexture_dv0eb")
+
+[node name="AliasUnlock" type="Area2D" parent="." unique_id=2056640466]
+position = Vector2(-70, -39)
+script = ExtResource("11_dqloj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AliasUnlock" unique_id=2116837637]
+position = Vector2(55, 1)
+shape = SubResource("RectangleShape2D_tvkk6")
+
+[editable path="Player"]

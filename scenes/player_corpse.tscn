@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cbbudalt4anfv"]
+
+[ext_resource type="Script" uid="uid://cbfc05gfuvvav" path="res://scripts/corpse.gd" id="1_wgxpv"]
+[ext_resource type="Texture2D" uid="uid://bobuvpeqgdvyt" path="res://assets/player/lil-guy-dead.png" id="1_xs6i1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tpwpp"]
+radius = 3.0
+
+[node name="PlayerCorpse" type="RigidBody2D" unique_id=1675688056]
+z_index = -5
+z_as_relative = false
+collision_layer = 2
+collision_mask = 2
+gravity_scale = 0.1
+script = ExtResource("1_wgxpv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1224387854 groups=["player"]]
+z_index = -5
+z_as_relative = false
+position = Vector2(1, 1)
+shape = SubResource("CircleShape2D_tpwpp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2104932602]
+z_index = 10
+texture_filter = 5
+texture = ExtResource("1_xs6i1")

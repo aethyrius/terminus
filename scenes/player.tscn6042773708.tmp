@@ -1,0 +1,152 @@
+[gd_scene format=3 uid="uid://cxqp0og7iihdw"]
+
+[ext_resource type="Script" uid="uid://dyi6ly8ryudhv" path="res://scripts/movement.gd" id="1_jej6c"]
+[ext_resource type="Texture2D" uid="uid://dr00npv8sh72b" path="res://assets/player/idle-anim/lil-guy.png" id="2_f1ej7"]
+[ext_resource type="Texture2D" uid="uid://bktper3gs4pu4" path="res://assets/player/idle-anim/lil-guy-looking.png" id="3_oprun"]
+[ext_resource type="Texture2D" uid="uid://cel0wpwi6exb5" path="res://assets/player/lil-guy-falling.png" id="4_a8ls1"]
+[ext_resource type="Texture2D" uid="uid://bg2svwokxrgq6" path="res://assets/player/lil-guy-thinking.png" id="5_qfm1y"]
+[ext_resource type="Texture2D" uid="uid://bn2c0qpveyiog" path="res://assets/player/walking-anim/lil-guy-walking-1.png" id="6_fulsm"]
+[ext_resource type="Texture2D" uid="uid://cgdlaq68ye5vx" path="res://assets/player/walking-anim/lil-guy-walking-2.png" id="7_4r5pv"]
+[ext_resource type="Script" uid="uid://cirjp3xgjru6g" path="res://scripts/terminal.gd" id="8_60mlk"]
+[ext_resource type="FontFile" uid="uid://dudur7chkmdrt" path="res://assets/Pixeled.ttf" id="9_i4ail"]
+[ext_resource type="Script" uid="uid://cjqrj4vekji8u" path="res://scripts/text.gd" id="10_a38lo"]
+[ext_resource type="Script" uid="uid://duodijpefr2go" path="res://scripts/commands/command.gd" id="11_4ni07"]
+[ext_resource type="Script" uid="uid://2u2ggg0kpr4m" path="res://scripts/commands/toggle.gd" id="12_l71n6"]
+[ext_resource type="Script" uid="uid://l6rbyksdnkww" path="res://scripts/commands/alias.gd" id="13_ke2ow"]
+[ext_resource type="Script" uid="uid://bi3321xfyreoo" path="res://scripts/player_health.gd" id="15_oprun"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ur7pv"]
+animations = [{
+"frames": [{
+"duration": 20.0,
+"texture": ExtResource("2_f1ej7")
+}, {
+"duration": 5.0,
+"texture": ExtResource("3_oprun")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_a8ls1")
+}],
+"loop": true,
+"name": &"falling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qfm1y")
+}],
+"loop": true,
+"name": &"thinking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_fulsm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4r5pv")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oprun"]
+size = Vector2(94, 84)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sweqy"]
+bg_color = Color(0, 0.22352941, 0, 0.6666667)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2hs0m"]
+bg_color = Color(0.22352941, 0.34117648, 0.10980392, 0.81960785)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
+
+[node name="Player" type="CharacterBody2D" unique_id=498137850 groups=["player"]]
+script = ExtResource("1_jej6c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1735238763]
+texture_filter = 5
+scale = Vector2(12, 12)
+sprite_frames = SubResource("SpriteFrames_ur7pv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1148614699 groups=["player"]]
+position = Vector2(-1, 6)
+shape = SubResource("RectangleShape2D_oprun")
+
+[node name="Terminal" type="Node2D" parent="." unique_id=2038720753]
+script = ExtResource("8_60mlk")
+
+[node name="Text" type="LineEdit" parent="Terminal" unique_id=2146570610]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 150.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
+theme_override_colors/font_uneditable_color = Color(0.22352941, 0.34117648, 0.10980392, 1)
+theme_override_colors/font_selected_color = Color(0.22352941, 0.34117648, 0.10980392, 1)
+theme_override_colors/font_outline_color = Color(0.22352941, 0.34117648, 0.10980392, 1)
+theme_override_colors/font_placeholder_color = Color(0.22352941, 0.34117648, 0.10980392, 1)
+theme_override_colors/caret_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
+theme_override_colors/selection_color = Color(0.22352941, 0.34117648, 0.10980392, 1)
+theme_override_constants/caret_width = 5
+theme_override_fonts/font = ExtResource("9_i4ail")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/read_only = SubResource("StyleBoxFlat_sweqy")
+theme_override_styles/focus = SubResource("StyleBoxFlat_2hs0m")
+alignment = 1
+max_length = 30
+editable = false
+expand_to_text_length = true
+context_menu_enabled = false
+emoji_menu_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+flat = true
+draw_control_chars = true
+virtual_keyboard_enabled = false
+caret_blink = true
+script = ExtResource("10_a38lo")
+metadata/_edit_use_anchors_ = true
+
+[node name="Commands" type="Node2D" parent="Terminal" unique_id=1947687175]
+
+[node name="TOGGLE" type="Node2D" parent="Terminal/Commands" unique_id=1414451190]
+script = ExtResource("11_4ni07")
+names = Array[String](["TOGGLE", "TOG"])
+code = ExtResource("12_l71n6")
+
+[node name="ALIAS" type="Node2D" parent="Terminal/Commands" unique_id=785563976]
+script = ExtResource("11_4ni07")
+names = Array[String](["ALIAS", "A"])
+code = ExtResource("13_ke2ow")
+enabled = true
+
+[node name="Health" type="Node2D" parent="." unique_id=2058250578 node_paths=PackedStringArray("owning")]
+script = ExtResource("15_oprun")
+owning = NodePath("")
+health = 1
+max_health = 1
+
+[connection signal="text_submitted" from="Terminal/Text" to="Terminal" method="_on_text_text_submitted"]
+[connection signal="text_submitted" from="Terminal/Text" to="Terminal/Text" method="_on_text_submitted"]
