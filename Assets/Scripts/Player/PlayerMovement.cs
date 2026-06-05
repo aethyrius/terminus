@@ -18,11 +18,17 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private int groundMask;
     private float direction;
+    private float timeScale;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         groundMask = 1 << LayerMask.NameToLayer("Ground");
+    }
+
+    private void Start()
+    {
+        timeScale = Time.timeScale;
     }
 
     private void Update()
@@ -31,6 +37,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (isTerminalClosed)
         {
+            if (Time.timeScale < timeScale - 0.1f)
+            {
+                Time.timeScale = Mathf.Lerp(Time.timeScale, timeScale, 0.25f);
+            }
+
+
             direction = Input.GetAxis("Horizontal");
             rb.linearVelocity = new Vector2(direction * speed, rb.linearVelocity.y);
 
@@ -41,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            Time.timeScale = Mathf.Lerp(Time.timeScale * 0.5f, timeScale, 0.25f);
+
             float smoothedX = Mathf.Lerp(rb.linearVelocity.x, 0f, Time.deltaTime * 4);
             rb.linearVelocity = new Vector2(smoothedX, rb.linearVelocity.y);
         }

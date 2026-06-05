@@ -9,6 +9,8 @@ public class LevelHandler : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1.0f;
+
         if (Instance == null)
         {
             Instance = this;
