@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dyi6ly8ryudhv" path="res://scripts/movement.gd" id="1_jej6c"]
 [ext_resource type="Texture2D" uid="uid://dr00npv8sh72b" path="res://assets/player/idle-anim/lil-guy.png" id="2_f1ej7"]
+[ext_resource type="Script" uid="uid://dymptf5vrufuc" path="res://scripts/commands/gravity.gd" id="2_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://bktper3gs4pu4" path="res://assets/player/idle-anim/lil-guy-looking.png" id="3_oprun"]
 [ext_resource type="Texture2D" uid="uid://cel0wpwi6exb5" path="res://assets/player/lil-guy-falling.png" id="4_a8ls1"]
 [ext_resource type="Texture2D" uid="uid://bg2svwokxrgq6" path="res://assets/player/lil-guy-thinking.png" id="5_qfm1y"]
@@ -195,6 +196,11 @@ names = Array[String](["TIME", "T"])
 args = 1
 code = ExtResource("15_4r5pv")
 enabled = true
+
+[node name="GRAVITY" type="Node2D" parent="Terminal/Commands" unique_id=527500533]
+script = ExtResource("11_4ni07")
+names = Array[String](["GRAVITY", "GRAV"])
+code = ExtResource("2_qhqgy")
 
 [node name="AliasMenu" type="Control" parent="Terminal" unique_id=1965703491 node_paths=PackedStringArray("name_lines", "command_lines", "alias_nodes", "terminal")]
 visible = false

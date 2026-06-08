@@ -19,18 +19,18 @@ enum e_color {
 @onready var coll = $CollisionShape2D
 
 func _ready():
-	init_toggle()
+	_init_toggle()
 
-func init_toggle() -> void:		
+func _init_toggle() -> void:
 	toggled = !toggled
 	
 	if (toggled):
 		modulate.a = 0.2
-		coll.disabled = true;
+		coll.disabled = true
 	else:
 		modulate.a = 1
-		coll.disabled = false;
+		coll.disabled = false
 		
 func toggle() -> void:
 	if (!toggleable): return
-	init_toggle()
+	_init_toggle()

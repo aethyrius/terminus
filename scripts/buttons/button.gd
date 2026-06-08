@@ -18,3 +18,7 @@ func _on_body_entered(body):
 func call_behavior() -> void:
 	$"Behavior".on_pressed()
 	print("Pressed button!")
+
+
+func _on_interaction_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.

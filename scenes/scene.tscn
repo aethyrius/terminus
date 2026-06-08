@@ -1,16 +1,22 @@
 [gd_scene format=3 uid="uid://chdoc2wc2nyc1"]
 
 [ext_resource type="Script" uid="uid://dsm28o5qyvdqb" path="res://scripts/buttons/button.gd" id="1_1id6j"]
+[ext_resource type="Script" uid="uid://st5i1a0rhg7g" path="res://scripts/alert_dialog.gd" id="1_2v74y"]
+[ext_resource type="Script" uid="uid://sbnpadxcyv1a" path="res://scripts/ui_handler.gd" id="1_c7gmr"]
+[ext_resource type="FontFile" uid="uid://djq0atrov5f14" path="res://assets/bpdots.squares-bold.otf" id="1_dv0eb"]
+[ext_resource type="LabelSettings" uid="uid://cp750puk4747v" path="res://assets/text_label.tres" id="1_r2e7w"]
+[ext_resource type="Theme" uid="uid://b0rxpurocvkxf" path="res://assets/text.tres" id="1_tvkk6"]
+[ext_resource type="Texture2D" uid="uid://b7jd4dl3qvr8c" path="res://assets/button-pressed.png" id="2_5yiy0"]
 [ext_resource type="Texture2D" uid="uid://dd314e1ckccj3" path="res://assets/button.png" id="3_tvkk6"]
 [ext_resource type="Script" uid="uid://8l4nulttyfow" path="res://scripts/buttons/behaviors/bh_set_toggleable.gd" id="4_dqloj"]
 [ext_resource type="PackedScene" uid="uid://cxqp0og7iihdw" path="res://scenes/player.tscn" id="4_t7and"]
 [ext_resource type="Script" uid="uid://drd0tx50ke7tk" path="res://scripts/buttons/behaviors/bh_enable_command.gd" id="5_dqloj"]
-[ext_resource type="Script" uid="uid://duodijpefr2go" path="res://scripts/commands/command.gd" id="7_dqloj"]
 [ext_resource type="Script" uid="uid://c6d3daj3rk2gd" path="res://scripts/kill_area.gd" id="7_ruw3y"]
-[ext_resource type="Script" uid="uid://dymptf5vrufuc" path="res://scripts/commands/gravity.gd" id="8_5yiy0"]
-[ext_resource type="Script" uid="uid://cujbwlwk2rtrp" path="res://scenes/unlock_alias.gd" id="11_dqloj"]
+[ext_resource type="Script" uid="uid://c5i716hukbpum" path="res://scripts/interaction.gd" id="9_0f71q"]
+[ext_resource type="StyleBox" uid="uid://dpb6trguk2ouk" path="res://assets/text_style_box.tres" id="11_8cc7s"]
 [ext_resource type="Texture2D" uid="uid://buxg3o0wf4odo" path="res://icon.svg" id="13_0f71q"]
 [ext_resource type="Script" uid="uid://b20jmg34o0s36" path="res://scripts/toggleable.gd" id="14_e2ofw"]
+[ext_resource type="Script" uid="uid://d2tgd8ujgwkq" path="res://scripts/interactables/test_interactable.gd" id="15_dv0eb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(240, 24)
@@ -25,6 +31,22 @@ size = Vector2(12, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a38lo"]
 size = Vector2(8, 8)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2v74y"]
+content_margin_left = 12.0
+content_margin_top = 24.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+bg_color = Color(0.22352941, 0.34117648, 0.10980392, 0.9019608)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
+shadow_offset = Vector2(1.03, 0)
+anti_aliasing = false
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1id6j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jej6c"]
 size = Vector2(24, 4)
@@ -126,17 +148,51 @@ size = Vector2(6, 48)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_dv0eb"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tvkk6"]
-size = Vector2(8, 8)
+[sub_resource type="CircleShape2D" id="CircleShape2D_dv0eb"]
 
 [node name="Scene" type="Node2D" unique_id=981939462]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1624040266]
 zoom = Vector2(7, 7)
 
+[node name="UI" type="Control" parent="Camera2D" unique_id=1521290855]
+z_index = 50
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -44.0
+offset_bottom = -44.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c7gmr")
+
+[node name="AlertDialog" type="PanelContainer" parent="Camera2D/UI" unique_id=1795535863]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.5
+offset_right = 32.5
+offset_bottom = 59.0
+grow_horizontal = 2
+scale = Vector2(0.15, 0.15)
+pivot_offset_ratio = Vector2(0.5, 0)
+theme_override_styles/panel = ExtResource("11_8cc7s")
+script = ExtResource("1_2v74y")
+
+[node name="Text" type="Label" parent="Camera2D/UI/AlertDialog" unique_id=2072693772]
+texture_filter = 1
+layout_mode = 2
+label_settings = ExtResource("1_r2e7w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Ground" type="RigidBody2D" parent="." unique_id=1263242959]
 visibility_layer = 3
-position = Vector2(0, 40)
+position = Vector2(0, 43)
 collision_layer = 3
 collision_mask = 7
 gravity_scale = 0.0
@@ -151,7 +207,7 @@ texture = SubResource("CanvasTexture_3v2ag")
 
 [node name="Ground3" type="RigidBody2D" parent="." unique_id=1193378343]
 visibility_layer = 3
-position = Vector2(43, -34)
+position = Vector2(43, -31)
 collision_layer = 3
 collision_mask = 7
 gravity_scale = 0.0
@@ -166,7 +222,7 @@ texture = SubResource("CanvasTexture_3v2ag")
 
 [node name="Ground2" type="RigidBody2D" parent="." unique_id=1169509725]
 visibility_layer = 3
-position = Vector2(0, -59)
+position = Vector2(0, -56)
 collision_layer = 3
 collision_mask = 7
 gravity_scale = 0.0
@@ -180,8 +236,9 @@ scale = Vector2(240, 24)
 texture = SubResource("CanvasTexture_3v2ag")
 
 [node name="EnableRedButton" type="Area2D" parent="." unique_id=1561553919]
-position = Vector2(-70, -39)
+position = Vector2(-70, -36)
 script = ExtResource("1_1id6j")
+pressed_texture = ExtResource("2_5yiy0")
 
 [node name="Sprite2D" type="Sprite2D" parent="EnableRedButton" unique_id=475196908]
 texture_filter = 3
@@ -196,8 +253,9 @@ script = ExtResource("4_dqloj")
 color = 1
 
 [node name="EnableGravity" type="Area2D" parent="." unique_id=1282682097]
-position = Vector2(26, -25)
+position = Vector2(26, -22)
 script = ExtResource("1_1id6j")
+pressed_texture = ExtResource("2_5yiy0")
 
 [node name="Sprite2D" type="Sprite2D" parent="EnableGravity" unique_id=1660909412]
 texture_filter = 3
@@ -212,6 +270,7 @@ script = ExtResource("5_dqloj")
 cmd_name = "GRAVITY"
 
 [node name="Player" parent="." unique_id=498137850 instance=ExtResource("4_t7and")]
+position = Vector2(0, 21)
 speed = 65
 jump_speed = -90
 gravity = 300
@@ -229,26 +288,22 @@ player = NodePath("..")
 
 [node name="Text" parent="Player/Terminal" index="0" unique_id=1742600158]
 z_index = 2
-offset_top = -60.0
-offset_bottom = 40.0
+texture_filter = 1
+texture_repeat = 2
+offset_left = -125.00001
+offset_top = -50.0
+offset_right = 124.99978
+offset_bottom = 30.0
 scale = Vector2(0.1, 0.1)
+theme = ExtResource("1_tvkk6")
+theme_override_fonts/font = ExtResource("1_dv0eb")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = ExtResource("11_8cc7s")
+theme_override_styles/read_only = ExtResource("11_8cc7s")
+theme_override_styles/focus = ExtResource("11_8cc7s")
 
 [node name="TOGGLE" parent="Player/Terminal/Commands" parent_id_path=PackedInt32Array(498137850, 1020716996) index="0" unique_id=750278431]
 enabled = true
-
-[node name="ALIAS1" parent="Player/Terminal/Commands" parent_id_path=PackedInt32Array(498137850, 1020716996) index="2" unique_id=525045869]
-enabled = false
-
-[node name="ALIAS2" parent="Player/Terminal/Commands" parent_id_path=PackedInt32Array(498137850, 1020716996) index="3" unique_id=1357537038]
-enabled = false
-
-[node name="ALIAS3" parent="Player/Terminal/Commands" parent_id_path=PackedInt32Array(498137850, 1020716996) index="4" unique_id=1675121429]
-enabled = false
-
-[node name="GRAVITY" type="Node2D" parent="Player/Terminal/Commands" parent_id_path=PackedInt32Array(498137850, 1020716996) index="6" unique_id=1683687617]
-script = ExtResource("7_dqloj")
-names = Array[String](["GRAVITY", "GRAV"])
-code = ExtResource("8_5yiy0")
 
 [node name="AliasMenu" parent="Player/Terminal" index="2" unique_id=1965703491 node_paths=PackedStringArray("command_lines")]
 offset_left = -40.0
@@ -259,13 +314,92 @@ scale = Vector2(0.1, 0.1)
 pivot_offset = Vector2(0, 0)
 command_lines = [NodePath("AliasCommands/Cmd1"), NodePath("AliasCommands/Cmd2"), NodePath("AliasCommands/Cmd3")]
 
+[node name="PanelContainer" parent="Player/Terminal/AliasMenu" index="0" unique_id=1016333667]
+offset_top = 9.999999
+offset_bottom = 400.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2v74y")
+
+[node name="AliasNames" parent="Player/Terminal/AliasMenu" index="1" unique_id=1335593166]
+offset_left = 40.0
+offset_right = 220.0
+theme_override_constants/separation = 30
+
+[node name="Name1" parent="Player/Terminal/AliasMenu/AliasNames" index="0" unique_id=2058220151]
+theme = ExtResource("1_tvkk6")
+theme_override_colors/font_selected_color = Color(0.32273862, 0.50840306, 0.14547807, 1)
+theme_override_fonts/font = ExtResource("1_dv0eb")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = ExtResource("11_8cc7s")
+
+[node name="Name2" parent="Player/Terminal/AliasMenu/AliasNames" index="1" unique_id=1223377984]
+theme = ExtResource("1_tvkk6")
+theme_override_colors/font_selected_color = Color(0.32273862, 0.50840306, 0.14547807, 1)
+theme_override_fonts/font = ExtResource("1_dv0eb")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = ExtResource("11_8cc7s")
+
+[node name="Name3" parent="Player/Terminal/AliasMenu/AliasNames" index="2" unique_id=341195365]
+theme = ExtResource("1_tvkk6")
+theme_override_colors/font_selected_color = Color(0.32273862, 0.50840306, 0.14547807, 1)
+theme_override_fonts/font = ExtResource("1_dv0eb")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = ExtResource("11_8cc7s")
+
+[node name="AliasCommands" parent="Player/Terminal/AliasMenu" index="2" unique_id=32314381]
+offset_left = 260.0
+offset_right = 760.0
+theme_override_constants/separation = 30
+
+[node name="Cmd1" parent="Player/Terminal/AliasMenu/AliasCommands" index="0" unique_id=2024443042]
+theme = ExtResource("1_tvkk6")
+theme_override_colors/font_selected_color = Color(0.32273862, 0.50840306, 0.14547807, 1)
+theme_override_fonts/font = ExtResource("1_dv0eb")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = ExtResource("11_8cc7s")
+text = ""
+
+[node name="Cmd2" parent="Player/Terminal/AliasMenu/AliasCommands" index="1" unique_id=1476480408]
+theme = ExtResource("1_tvkk6")
+theme_override_colors/font_selected_color = Color(0.32273862, 0.50840306, 0.14547807, 1)
+theme_override_fonts/font = ExtResource("1_dv0eb")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = ExtResource("11_8cc7s")
+
+[node name="Cmd3" parent="Player/Terminal/AliasMenu/AliasCommands" index="2" unique_id=506597538]
+theme = ExtResource("1_tvkk6")
+theme_override_colors/font_selected_color = Color(0.32273862, 0.50840306, 0.14547807, 1)
+theme_override_fonts/font = ExtResource("1_dv0eb")
+theme_override_font_sizes/font_size = 42
+theme_override_styles/normal = ExtResource("11_8cc7s")
+
+[node name="AliasLabel" parent="Player/Terminal/AliasMenu" index="3" unique_id=1199656747]
+offset_left = 60.0
+offset_top = 40.0
+offset_right = 210.0
+offset_bottom = 91.0
+label_settings = ExtResource("1_r2e7w")
+
+[node name="CommandsLabel" parent="Player/Terminal/AliasMenu" index="4" unique_id=355427535]
+offset_top = 40.0
+offset_right = 620.0
+offset_bottom = 145.0
+label_settings = ExtResource("1_r2e7w")
+
 [node name="Health" parent="Player" index="3" unique_id=1011020923 node_paths=PackedStringArray("respawn_pos", "owning")]
 respawn_pos = NodePath("../../SpawnPoint")
 owning = NodePath("..")
 
+[node name="Interaction" type="Area2D" parent="Player" unique_id=1454530112]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("9_0f71q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Interaction" unique_id=1591241147]
+shape = SubResource("CircleShape2D_1id6j")
+
 [node name="GreenToggle" type="RigidBody2D" parent="." unique_id=2087156457 groups=["toggles"]]
 modulate = Color(0.3019608, 0.56078434, 0, 1)
-position = Vector2(-52, 3)
+position = Vector2(-52, 6)
 freeze = true
 script = ExtResource("14_e2ofw")
 toggled = true
@@ -280,7 +414,7 @@ texture = SubResource("CanvasTexture_3v2ag")
 
 [node name="GreenToggle2" type="RigidBody2D" parent="." unique_id=1062919460 groups=["toggles"]]
 modulate = Color(0.3019608, 0.56078434, 0, 1)
-position = Vector2(-52, -21)
+position = Vector2(-52, -18)
 freeze = true
 script = ExtResource("14_e2ofw")
 tog_color = 2
@@ -294,7 +428,7 @@ texture = SubResource("CanvasTexture_3v2ag")
 
 [node name="RedToggle" type="RigidBody2D" parent="." unique_id=820499789 groups=["toggles"]]
 modulate = Color(0.72248274, 0, 0.12579757, 1)
-position = Vector2(55, 18)
+position = Vector2(55, 21)
 freeze = true
 script = ExtResource("14_e2ofw")
 toggleable = false
@@ -309,7 +443,7 @@ texture = SubResource("CanvasTexture_3v2ag")
 
 [node name="RedToggle2" type="RigidBody2D" parent="." unique_id=845487250 groups=["toggles"]]
 modulate = Color(0.72248274, 0, 0.12579757, 1)
-position = Vector2(31, 5)
+position = Vector2(31, 8)
 freeze = true
 script = ExtResource("14_e2ofw")
 toggled = true
@@ -325,7 +459,7 @@ texture = SubResource("CanvasTexture_3v2ag")
 
 [node name="RedToggle3" type="RigidBody2D" parent="." unique_id=415117690 groups=["toggles"]]
 modulate = Color(0.72248274, 0, 0.12579757, 1)
-position = Vector2(55, -9)
+position = Vector2(55, -6)
 freeze = true
 script = ExtResource("14_e2ofw")
 toggleable = false
@@ -340,7 +474,7 @@ texture = SubResource("CanvasTexture_3v2ag")
 
 [node name="KillArea" type="Area2D" parent="." unique_id=33313480]
 z_index = -5
-position = Vector2(-60, 25)
+position = Vector2(-60, 28)
 script = ExtResource("7_ruw3y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea" unique_id=198125616]
@@ -353,7 +487,7 @@ texture = SubResource("CanvasTexture_3v2ag")
 
 [node name="KillArea2" type="Area2D" parent="." unique_id=986601783]
 z_index = -5
-position = Vector2(55, 25)
+position = Vector2(55, 28)
 script = ExtResource("7_ruw3y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea2" unique_id=1944368615]
@@ -365,12 +499,14 @@ scale = Vector2(32, 6)
 texture = SubResource("CanvasTexture_3v2ag")
 
 [node name="SpawnPoint" type="Node2D" parent="." unique_id=678583522]
+position = Vector2(0, 3)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=596699426]
+position = Vector2(0, 3)
 tile_set = SubResource("TileSet_dv0eb")
 
 [node name="Wall" type="RigidBody2D" parent="." unique_id=1031869022]
-position = Vector2(-82, -8)
+position = Vector2(-82, -5)
 collision_layer = 3
 collision_mask = 7
 freeze = true
@@ -383,7 +519,7 @@ scale = Vector2(12, 120)
 texture = SubResource("CanvasTexture_3v2ag")
 
 [node name="Platform" type="RigidBody2D" parent="." unique_id=576796238]
-position = Vector2(-70, 15)
+position = Vector2(-70, 18)
 collision_layer = 3
 collision_mask = 7
 freeze = true
@@ -396,7 +532,7 @@ scale = Vector2(12, 4)
 texture = SubResource("CanvasTexture_5yiy0")
 
 [node name="Platform3" type="RigidBody2D" parent="." unique_id=1582191102]
-position = Vector2(-70, -9)
+position = Vector2(-70, -6)
 collision_layer = 3
 collision_mask = 7
 freeze = true
@@ -409,7 +545,7 @@ scale = Vector2(12, 4)
 texture = SubResource("CanvasTexture_5yiy0")
 
 [node name="Platform4" type="RigidBody2D" parent="." unique_id=1637045474]
-position = Vector2(-70, -33)
+position = Vector2(-70, -30)
 collision_layer = 3
 collision_mask = 7
 freeze = true
@@ -422,7 +558,7 @@ scale = Vector2(12, 4)
 texture = SubResource("CanvasTexture_5yiy0")
 
 [node name="Platform6" type="RigidBody2D" parent="." unique_id=419351125]
-position = Vector2(-41, 25)
+position = Vector2(-41, 28)
 collision_layer = 3
 collision_mask = 7
 freeze = true
@@ -435,7 +571,7 @@ scale = Vector2(6, 6)
 texture = SubResource("CanvasTexture_0f71q")
 
 [node name="Platform5" type="RigidBody2D" parent="." unique_id=1475815314]
-position = Vector2(26, -19)
+position = Vector2(26, -16)
 collision_layer = 3
 collision_mask = 7
 freeze = true
@@ -448,7 +584,7 @@ scale = Vector2(24, 4)
 texture = SubResource("CanvasTexture_1id6j")
 
 [node name="Wall2" type="RigidBody2D" parent="." unique_id=730216807]
-position = Vector2(77, 9)
+position = Vector2(77, 12)
 collision_layer = 3
 collision_mask = 7
 freeze = true
@@ -462,7 +598,7 @@ scale = Vector2(12, 120)
 texture = SubResource("CanvasTexture_3v2ag")
 
 [node name="Wall3" type="RigidBody2D" parent="." unique_id=921619242]
-position = Vector2(11, -27)
+position = Vector2(11, -24)
 collision_layer = 3
 collision_mask = 7
 freeze = true
@@ -475,12 +611,20 @@ shape = SubResource("RectangleShape2D_1id6j")
 scale = Vector2(6, 48)
 texture = SubResource("CanvasTexture_dv0eb")
 
-[node name="AliasUnlock" type="Area2D" parent="." unique_id=2056640466]
-position = Vector2(-70, -39)
-script = ExtResource("11_dqloj")
+[node name="TestInteractable" type="Area2D" parent="." unique_id=2125483848]
+position = Vector2(-30, 18)
+collision_layer = 8
+collision_mask = 8
+monitoring = false
+script = ExtResource("15_dv0eb")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AliasUnlock" unique_id=2116837637]
-position = Vector2(55, 1)
-shape = SubResource("RectangleShape2D_tvkk6")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestInteractable" unique_id=1522924106]
+light_mask = 8
+visibility_layer = 8
+position = Vector2(57, 3)
+shape = SubResource("CircleShape2D_dv0eb")
+
+[connection signal="area_entered" from="Player/Interaction" to="Player/Interaction" method="_on_area_entered"]
+[connection signal="area_exited" from="Player/Interaction" to="Player/Interaction" method="_on_area_exited"]
 
 [editable path="Player"]

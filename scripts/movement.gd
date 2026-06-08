@@ -45,7 +45,7 @@ func _physics_process(delta):
 			elif (is_on_ceiling()):
 				velocity.y = -jump_speed
 	else:
-		if (is_on_floor()):
+		if (is_on_floor() or is_on_ceiling()):
 			velocity.x = lerp(velocity.x, 0.0, friction)
 
 	move_and_slide()

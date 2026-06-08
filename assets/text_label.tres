@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://cp750puk4747v"]
+
+[ext_resource type="FontFile" uid="uid://djq0atrov5f14" path="res://assets/bpdots.squares-bold.otf" id="1_4jqtn"]
+
+[resource]
+font = ExtResource("1_4jqtn")
+font_size = 42
+font_color = Color(0.43137255, 0.6745098, 0.19607843, 1)
